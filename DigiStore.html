@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DigiStore – Toko Elektronik Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0E1A4B;--navy2:#1B2C75;--amber:#FFB21E;--bg:#F4F6FB;--card:#fff;--text:#1A2140;--muted:#5E6785;--line:#E1E5F0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+/* header */
+header{background:var(--navy);position:sticky;top:0;z-index:50}
+.bar{display:flex;align-items:center;gap:20px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:1.4rem;letter-spacing:-.02em}
+nav{margin-left:auto;display:flex;gap:6px}
+nav a{color:#C9D0F0;padding:8px 14px;border-radius:8px;font-weight:500}
+nav a:hover{background:var(--navy2);color:#fff}
+.cartbtn{background:var(--amber);color:var(--navy);font-weight:700;padding:10px 16px;border-radius:10px;display:flex;gap:8px;align-items:center}
+.cartbtn b{background:var(--navy);color:#fff;border-radius:99px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.75rem}
+.burger{display:none;background:none;color:#fff;font-size:1.6rem;margin-left:auto}
+/* hero */
+.hero{background:linear-gradient(120deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding-top:64px;padding-bottom:64px}
+.tag{display:inline-block;background:var(--amber);color:var(--navy);font-weight:700;font-size:.85rem;padding:4px 12px;border-radius:99px;margin-bottom:16px}
+.hero h1{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:16px}
+.hero p{color:#C9D0F0;max-width:46ch;margin-bottom:26px;font-size:1.05rem}
+.btn{display:inline-block;background:var(--amber);color:var(--navy);font-weight:700;padding:13px 24px;border-radius:12px}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;color:#fff;border:2px solid #4A5AAE;margin-left:10px}
+.heroimg{background:rgba(255,255,255,.08);border-radius:28px;padding:20px;aspect-ratio:1/.85}
+.heroimg svg,.heroimg img{width:100%;height:100%;object-fit:contain}
+/* sections */
+section{padding:64px 0}
+h2{font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.02em;margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:28px;max-width:60ch}
+.desc{background:#fff;border-bottom:1px solid var(--line)}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.perk{padding:18px 20px;border-left:4px solid var(--amber);background:var(--bg);border-radius:0 12px 12px 0}
+.perk b{display:block;margin-bottom:2px}
+.perk span{color:var(--muted);font-size:.95rem}
+/* products */
+.tools{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px;align-items:center}
+.search{flex:1 1 260px;padding:13px 16px;border:2px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+.search:focus{border-color:var(--navy2);outline:0}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#fff;border:2px solid var(--line);padding:10px 16px;border-radius:99px;font-weight:600;color:var(--muted)}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.card{background:var(--card);border-radius:18px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:0 14px 34px rgba(14,26,75,.12);transform:translateY(-3px)}
+.pic{aspect-ratio:1/.8;background:linear-gradient(160deg,#EEF1FA,#DDE3F5);padding:18px;position:relative}
+.pic svg,.pic img{width:100%;height:100%;object-fit:contain}
+.pic em{position:absolute;top:12px;left:12px;background:var(--navy);color:#fff;font-style:normal;font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:99px}
+.info{padding:18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.info h3{font-size:1.05rem}
+.info p{color:var(--muted);font-size:.9rem;flex:1}
+.price{font-weight:800;font-size:1.2rem;color:var(--navy2);margin:6px 0}
+.acts{display:flex;gap:8px}
+.acts button{flex:1;padding:11px;border-radius:10px;font-weight:700}
+.det{background:var(--bg);color:var(--navy)}
+.add{background:var(--navy);color:#fff}
+.add:hover{background:var(--navy2)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px}
+.feat{background:#fff}
+/* about & contact */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px}
+.box li{list-style:none;padding:8px 0;border-bottom:1px solid var(--line)}
+.box li:last-child{border:0}
+.soc{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.soc a{background:var(--navy);color:#fff;padding:8px 14px;border-radius:99px;font-weight:600;font-size:.9rem}
+footer{background:var(--navy);color:#C9D0F0;padding:40px 0 24px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;margin-bottom:24px}
+footer h4{color:#fff;margin-bottom:8px}
+footer a{display:block;padding:2px 0}
+.copy{border-top:1px solid #2A3A86;padding-top:16px;font-size:.85rem}
+/* cart drawer */
+.ov{position:fixed;inset:0;background:rgba(10,15,40,.55);display:none;z-index:90}
+.ov.open{display:block}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:#fff;z-index:100;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.dh{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.dh button{background:none;font-size:1.5rem}
+.items{flex:1;overflow:auto;padding:12px 20px}
+.it{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.it .th{width:64px;height:56px;background:#EEF1FA;border-radius:10px;padding:4px}
+.it .th svg,.it .th img{width:100%;height:100%;object-fit:contain}
+.it small{color:var(--muted)}
+.qty{display:flex;align-items:center;gap:6px;margin-top:4px}
+.qty button{width:26px;height:26px;border-radius:8px;background:var(--bg);font-weight:700}
+.rm{background:none;color:#C0392B;font-size:.8rem;font-weight:600}
+.df{padding:20px;border-top:1px solid var(--line)}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:1.15rem;margin:6px 0 14px}
+.df .btn{width:100%;text-align:center}
+/* modal */
+.modal{position:fixed;inset:0;display:none;place-items:center;z-index:120;background:rgba(10,15,40,.6);padding:20px}
+.modal.open{display:grid}
+.mb{background:#fff;border-radius:20px;max-width:760px;width:100%;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.mb .pic{aspect-ratio:auto;min-height:260px}
+.mi{padding:26px;display:flex;flex-direction:column;gap:10px}
+.mi .x{align-self:flex-end;background:none;font-size:1.4rem}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--navy);color:#fff;padding:12px 20px;border-radius:12px;z-index:200;transition:transform .25s;font-weight:600}
+.toast.show{transform:translate(-50%,0)}
+@media(max-width:860px){
+ .hero .wrap,.two,.mb{grid-template-columns:1fr}
+ .perks,.fg{grid-template-columns:1fr}
+ .burger{display:block}
+ nav{display:none;position:absolute;top:72px;left:0;right:0;background:var(--navy);flex-direction:column;padding:10px 20px 18px;margin:0}
+ nav.open{display:flex}
+ .cartbtn{margin-left:0}
+ .bar{gap:12px}
+ .btn.ghost{margin:10px 0 0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="wrap bar">
+  <a href="#beranda" class="logo" aria-label="DigiStore">
+   <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
+    <rect width="48" height="48" rx="13" fill="#FFB21E"/>
+    <path d="M13 14h8c8 0 13 4.2 13 10s-5 10-13 10h-8z" fill="#0E1A4B"/>
+    <path d="M19 20h2c4 0 7 1.8 7 4s-3 4-7 4h-2z" fill="#FFB21E"/>
+    <circle cx="36" cy="12" r="3.2" fill="#0E1A4B"/>
+   </svg>
+   DigiStore
+  </a>
+  <nav id="nav">
+   <a href="#beranda">Beranda</a><a href="#unggulan">Unggulan</a><a href="#katalog">Katalog</a><a href="#tentang">Tentang Kami</a><a href="#kontak">Kontak</a>
+  </nav>
+  <button class="cartbtn" id="openCart" aria-label="Buka keranjang">Keranjang <b id="cnt">0</b></button>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+ </div>
+</header>
+
+<main>
+<div class="hero" id="beranda">
+ <div class="wrap">
+  <div>
+   <span class="tag">Promo Akhir Tahun – Diskon hingga 30%</span>
+   <h1>Gadget terbaru, harga yang masuk akal.</h1>
+   <p>Laptop, smartphone, dan aksesoris pilihan dengan garansi resmi. Belanja mudah, kirim ke seluruh Indonesia.</p>
+   <a class="btn" href="#katalog">Belanja Sekarang</a><a class="btn ghost" href="#tentang">Kenali DigiStore</a>
+  </div>
+  <div class="heroimg" id="heroimg"></div>
+ </div>
+</div>
+
+<section class="desc">
+ <div class="wrap">
+  <h2>Toko elektronik yang bikin belanja lebih tenang</h2>
+  <p class="sub">DigiStore menyediakan produk elektronik original dengan harga transparan, supaya kamu bisa memilih gadget yang tepat tanpa bingung.</p>
+  <div class="perks">
+   <div class="perk"><b>100% Original</b><span>Semua produk bergaransi resmi.</span></div>
+   <div class="perk"><b>Pengiriman Cepat</b><span>Dikirim di hari yang sama sebelum pukul 15.00.</span></div>
+   <div class="perk"><b>Retur 7 Hari</b><span>Barang tidak sesuai? Kami ganti.</span></div>
+  </div>
+ </div>
+</div>
+
+<section class="feat" id="unggulan">
+ <div class="wrap">
+  <h2>Produk unggulan</h2>
+  <p class="sub">Paling banyak dibeli minggu ini.</p>
+  <div class="grid" id="featGrid"></div>
+ </div>
+</section>
+
+<section id="katalog">
+ <div class="wrap">
+  <h2>Katalog produk</h2>
+  <p class="sub">Cari berdasarkan nama atau pilih kategori.</p>
+  <div class="tools">
+   <input class="search" id="q" type="search" placeholder="Cari produk, misalnya &quot;laptop&quot;" aria-label="Cari produk">
+   <div class="chips" id="chips"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+ </div>
+</section>
+
+<section class="feat" id="tentang">
+ <div class="wrap two">
+  <div>
+   <h2>Tentang kami</h2>
+   <p class="sub" style="max-width:none">DigiStore adalah toko elektronik online yang dikembangkan oleh Digital Creative Solution. Kami ingin pelanggan melihat katalog produk dengan jelas, membandingkan harga dengan mudah, dan berbelanja tanpa ribet. Setiap produk kami seleksi langsung dari distributor resmi.</p>
+   <p class="sub" style="max-width:none;margin:0">Misi kami sederhana: membuat teknologi terjangkau dan mudah dipilih oleh siapa saja.</p>
+  </div>
+  <div class="box" id="kontak">
+   <h2>Kontak toko</h2>
+   <ul>
+    <li><b>Alamat:</b> Jl. Teknologi No. 25, Jakarta Selatan 12345</li>
+    <li><b>Telepon / WhatsApp:</b> 0812-3456-7890</li>
+    <li><b>Email:</b> halo@digistore.id</li>
+    <li><b>Jam buka:</b> Senin–Sabtu, 09.00–21.00 WIB</li>
+   </ul>
+   <div class="soc"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">TikTok</a><a href="#">YouTube</a></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fg">
+   <div><h4>DigiStore</h4><p>Toko elektronik online terpercaya. Gadget original, garansi resmi, harga jelas.</p></div>
+   <div><h4>Menu</h4><a href="#beranda">Beranda</a><a href="#katalog">Katalog</a><a href="#tentang">Tentang Kami</a></div>
+   <div><h4>Hubungi kami</h4><a href="#kontak">0812-3456-7890</a><a href="#kontak">halo@digistore.id</a></div>
+  </div>
+  <div class="copy">© 2026 DigiStore. Dikembangkan oleh Digital Creative Solution.</div>
+ </div>
+</footer>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer" aria-label="Keranjang belanja">
+ <div class="dh"><h3>Keranjang belanja</h3><button id="closeCart" aria-label="Tutup">✕</button></div>
+ <div class="items" id="items"></div>
+ <div class="df">
+  <div class="tot"><span>Total (<span id="tq">0</span> barang)</span><span id="tp">Rp0</span></div>
+  <button class="btn" id="checkout">Checkout</button>
+ </div>
+</aside>
+<div class="modal" id="modal"><div class="mb" id="mb"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== DATA PRODUK =====
+   Untuk memakai foto asli dari Google: salin alamat gambar (klik kanan → Salin alamat gambar)
+   lalu tempel di field "img". Jika kosong / gagal dimuat, otomatis tampil ilustrasi bawaan. */
+const P=[
+{id:1,nama:"Laptop Aero 14 Pro",kat:"Laptop",harga:12499000,unggulan:true,warna:"#8FA3E8",img:"",desc:"Layar 14 inci 2K, Intel Core i7, RAM 16 GB, SSD 512 GB."},
+{id:2,nama:"Smartphone Nova X5",kat:"Smartphone",harga:6999000,unggulan:true,warna:"#FFB21E",img:"",desc:"Layar AMOLED 120Hz, kamera 108 MP, baterai 5000 mAh."},
+{id:3,nama:"Headphone Wireless Beat",kat:"Aksesoris",harga:899000,unggulan:true,warna:"#E4572E",img:"",desc:"Noise cancelling aktif, baterai tahan 40 jam."},
+{id:4,nama:"Smartwatch Fit Pulse",kat:"Aksesoris",harga:1499000,unggulan:false,warna:"#2EC4B6",img:"",desc:"Pantau detak jantung, tidur, dan 100+ mode olahraga."},
+{id:5,nama:"Tablet Slate 11",kat:"Tablet",harga:4299000,unggulan:false,warna:"#9B5DE5",img:"",desc:"Layar 11 inci, 8 GB RAM, cocok untuk belajar dan hiburan."},
+{id:6,nama:"Smartphone Lumo A3",kat:"Smartphone",harga:2899000,unggulan:false,warna:"#2D9CDB",img:"",desc:"Ringan dan terjangkau dengan kamera ganda 50 MP."},
+{id:7,nama:"Laptop Slim Go 15",kat:"Laptop",harga:7899000,unggulan:false,warna:"#3AB795",img:"",desc:"Ryzen 5, RAM 8 GB, SSD 512 GB, bodi tipis 1,6 kg."},
+{id:8,nama:"Mouse Gaming Swift",kat:"Aksesoris",harga:349000,unggulan:false,warna:"#F15BB5",img:"",desc:"Sensor 16.000 DPI, lampu RGB, 6 tombol programmable."}
+];
+const rp=n=>"Rp"+n.toLocaleString("id-ID");
+const $=s=>document.querySelector(s);
+
+/* ilustrasi bawaan per produk */
+function art(p){
+ const c=p.warna,d="#0E1A4B";
+ const k=p.nama.toLowerCase();
+ let s="";
+ if(p.kat==="Laptop")s=`<rect x="60" y="40" width="180" height="115" rx="9" fill="${d}"/><rect x="68" y="48" width="164" height="99" rx="4" fill="${c}"/><circle cx="150" cy="100" r="22" fill="#fff" opacity=".35"/><path d="M30 165h240l-14 14H44z" fill="#C5CCE6"/><rect x="125" y="165" width="50" height="5" rx="2" fill="#9AA3C7"/>`;
+ else if(p.kat==="Smartphone")s=`<rect x="100" y="12" width="100" height="180" rx="16" fill="${d}"/><rect x="107" y="22" width="86" height="160" rx="9" fill="${c}"/><circle cx="150" cy="30" r="3" fill="${d}"/><circle cx="150" cy="95" r="22" fill="#fff" opacity=".35"/><rect x="118" y="140" width="64" height="8" rx="4" fill="#fff" opacity=".5"/>`;
+ else if(p.kat==="Tablet")s=`<rect x="55" y="25" width="190" height="150" rx="14" fill="${d}"/><rect x="64" y="34" width="172" height="132" rx="6" fill="${c}"/><circle cx="150" cy="100" r="26" fill="#fff" opacity=".35"/>`;
+ else if(k.includes("headphone"))s=`<path d="M85 120V95a65 65 0 0 1 130 0v25" fill="none" stroke="${d}" stroke-width="12" stroke-linecap="round"/><rect x="68" y="105" width="32" height="58" rx="14" fill="${c}"/><rect x="200" y="105" width="32" height="58" rx="14" fill="${c}"/>`;
+ else if(k.includes("watch"))s=`<rect x="125" y="10" width="50" height="40" fill="${d}"/><rect x="125" y="150" width="50" height="40" fill="${d}"/><rect x="100" y="45" width="100" height="110" rx="26" fill="${d}"/><rect x="108" y="53" width="84" height="94" rx="19" fill="${c}"/><path d="M118 105h16l8-16 12 30 8-14h12" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`;
+ else s=`<path d="M150 20c-40 0-62 28-62 62v50c0 30 24 52 62 52s62-22 62-52V82c0-34-22-62-62-62z" fill="${d}"/><path d="M150 20c-40 0-62 28-62 62v14h124V82c0-34-22-62-62-62z" fill="${c}"/><rect x="144" y="40" width="12" height="34" rx="6" fill="#fff"/>`;
+ return `<svg viewBox="0 0 300 200" role="img" aria-label="${p.nama}">${s}</svg>`;
+}
+function pic(p){
+ if(!p.img)return art(p);
+ return `<img src="${p.img}" alt="${p.nama}" loading="lazy" onerror="this.outerHTML=this.dataset.fb" data-fb='${art(p).replace(/'/g,"&#39;")}'>`;
+}
+function card(p){
+ return `<article class="card"><div class="pic"><em>${p.kat}</em>${pic(p)}</div>
+ <div class="info"><h3>${p.nama}</h3><p>${p.desc}</p><div class="price">${rp(p.harga)}</div>
+ <div class="acts"><button class="det" onclick="detail(${p.id})">Lihat Detail</button><button class="add" onclick="add(${p.id})">+ Keranjang</button></div></div></article>`;
+}
+
+/* ===== katalog: pencarian + filter ===== */
+let kat="Semua";
+const cats=["Semua",...new Set(P.map(p=>p.kat))];
+function renderChips(){
+ $("#chips").innerHTML=cats.map(c=>`<button class="chip ${c===kat?"on":""}" onclick="setKat('${c}')">${c}</button>`).join("");
+}
+function setKat(c){kat=c;renderChips();renderGrid()}
+function renderGrid(){
+ const q=$("#q").value.trim().toLowerCase();
+ const r=P.filter(p=>(kat==="Semua"||p.kat===kat)&&p.nama.toLowerCase().includes(q));
+ $("#grid").innerHTML=r.length?r.map(card).join(""):`<div class="empty">Produk tidak ditemukan. Coba kata kunci atau kategori lain.</div>`;
+}
+$("#q").addEventListener("input",renderGrid);
+
+/* ===== keranjang ===== */
+let cart={};
+function add(id){cart[id]=(cart[id]||0)+1;upd();toast(P.find(p=>p.id===id).nama+" ditambahkan")}
+function chg(id,n){cart[id]+=n;if(cart[id]<=0)delete cart[id];upd()}
+function del(id){delete cart[id];upd()}
+function upd(){
+ const ids=Object.keys(cart);
+ const q=ids.reduce((a,i)=>a+cart[i],0);
+ const t=ids.reduce((a,i)=>a+cart[i]*P.find(p=>p.id==i).harga,0);
+ $("#cnt").textContent=q;$("#tq").textContent=q;$("#tp").textContent=rp(t);
+ $("#items").innerHTML=ids.length?ids.map(i=>{const p=P.find(x=>x.id==i);
+  return `<div class="it"><div class="th">${pic(p)}</div><div><b>${p.nama}</b><br><small>${rp(p.harga)}</small>
+  <div class="qty"><button onclick="chg(${i},-1)" aria-label="Kurangi">−</button><span>${cart[i]}</span><button onclick="chg(${i},1)" aria-label="Tambah">+</button></div></div>
+  <div style="text-align:right"><b>${rp(p.harga*cart[i])}</b><br><button class="rm" onclick="del(${i})">Hapus</button></div></div>`}).join("")
+  :`<p class="empty" style="padding:50px 0">Keranjang masih kosong. Pilih produk di katalog.</p>`;
+}
+const drawer=$("#drawer"),ov=$("#ov");
+function openCart(o){drawer.classList.toggle("open",o);ov.classList.toggle("open",o)}
+$("#openCart").onclick=()=>openCart(true);
+$("#closeCart").onclick=ov.onclick=()=>openCart(false);
+$("#checkout").onclick=()=>{
+ if(!Object.keys(cart).length){toast("Keranjang masih kosong");return}
+ toast("Terima kasih! Pesanan "+$("#tp").textContent+" diterima.");cart={};upd();openCart(false)};
+
+/* ===== detail & toast ===== */
+function detail(id){
+ const p=P.find(x=>x.id===id);
+ $("#mb").innerHTML=`<div class="pic">${pic(p)}</div><div class="mi"><button class="x" onclick="closeM()" aria-label="Tutup">✕</button>
+ <span class="tag" style="align-self:flex-start;margin:0">${p.kat}</span><h2>${p.nama}</h2><p>${p.desc}</p><div class="price">${rp(p.harga)}</div>
+ <button class="btn" onclick="add(${p.id});closeM()">Tambah ke Keranjang</button></div>`;
+ $("#modal").classList.add("open");
+}
+function closeM(){$("#modal").classList.remove("open")}
+$("#modal").onclick=e=>{if(e.target.id==="modal")closeM()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeM();openCart(false)}});
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2200)}
+
+/* menu mobile */
+$("#burger").onclick=()=>$("#nav").classList.toggle("open");
+$("#nav").onclick=()=>$("#nav").classList.remove("open");
+
+/* init */
+$("#heroimg").innerHTML=pic(P[1]);
+$("#featGrid").innerHTML=P.filter(p=>p.unggulan).map(card).join("");
+renderChips();renderGrid();upd();
+</script>
+</body>
+</html>
