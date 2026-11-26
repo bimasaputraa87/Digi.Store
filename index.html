@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DigiStore – Toko Elektronik Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header>
+ <div class="wrap bar">
+  <a href="#beranda" class="logo" aria-label="DigiStore">
+   <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
+    <rect width="48" height="48" rx="13" fill="#FFB21E"/>
+    <path d="M13 14h8c8 0 13 4.2 13 10s-5 10-13 10h-8z" fill="#0E1A4B"/>
+    <path d="M19 20h2c4 0 7 1.8 7 4s-3 4-7 4h-2z" fill="#FFB21E"/>
+    <circle cx="36" cy="12" r="3.2" fill="#0E1A4B"/>
+   </svg>
+   DigiStore
+  </a>
+  <nav id="nav">
+   <a href="#beranda">Beranda</a><a href="#unggulan">Unggulan</a><a href="#katalog">Katalog</a><a href="#tentang">Tentang Kami</a><a href="#kontak">Kontak</a>
+  </nav>
+  <button class="cartbtn" id="openCart" aria-label="Buka keranjang">Keranjang <b id="cnt">0</b></button>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+ </div>
+</header>
+
+<main>
+<div class="hero" id="beranda">
+ <div class="wrap">
+  <div>
+   <span class="tag">Promo Akhir Tahun – Diskon hingga 30%</span>
+   <h1>Gadget terbaru, harga yang masuk akal.</h1>
+   <p>Laptop, smartphone, dan aksesoris pilihan dengan garansi resmi. Belanja mudah, kirim ke seluruh Indonesia.</p>
+   <a class="btn" href="#katalog">Belanja Sekarang</a><a class="btn ghost" href="#tentang">Kenali DigiStore</a>
+  </div>
+  <div class="heroimg" id="heroimg"></div>
+ </div>
+</div>
+
+<section class="desc">
+ <div class="wrap">
+  <h2>Toko elektronik yang bikin belanja lebih tenang</h2>
+  <p class="sub">DigiStore menyediakan produk elektronik original dengan harga transparan, supaya kamu bisa memilih gadget yang tepat tanpa bingung.</p>
+  <div class="perks">
+   <div class="perk"><b>100% Original</b><span>Semua produk bergaransi resmi.</span></div>
+   <div class="perk"><b>Pengiriman Cepat</b><span>Dikirim di hari yang sama sebelum pukul 15.00.</span></div>
+   <div class="perk"><b>Retur 7 Hari</b><span>Barang tidak sesuai? Kami ganti.</span></div>
+  </div>
+ </div>
+</div>
+
+<section class="feat" id="unggulan">
+ <div class="wrap">
+  <h2>Produk unggulan</h2>
+  <p class="sub">Paling banyak dibeli minggu ini.</p>
+  <div class="grid" id="featGrid"></div>
+ </div>
+</section>
+
+<section id="katalog">
+ <div class="wrap">
+  <h2>Katalog produk</h2>
+  <p class="sub">Cari berdasarkan nama atau pilih kategori.</p>
+  <div class="tools">
+   <input class="search" id="q" type="search" placeholder="Cari produk, misalnya &quot;laptop&quot;" aria-label="Cari produk">
+   <div class="chips" id="chips"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+ </div>
+</section>
+
+<section class="feat" id="tentang">
+ <div class="wrap two">
+  <div>
+   <h2>Tentang kami</h2>
+   <p class="sub" style="max-width:none">DigiStore adalah toko elektronik online yang dikembangkan oleh Digital Creative Solution. Kami ingin pelanggan melihat katalog produk dengan jelas, membandingkan harga dengan mudah, dan berbelanja tanpa ribet. Setiap produk kami seleksi langsung dari distributor resmi.</p>
+   <p class="sub" style="max-width:none;margin:0">Misi kami sederhana: membuat teknologi terjangkau dan mudah dipilih oleh siapa saja.</p>
+  </div>
+  <div class="box" id="kontak">
+   <h2>Kontak toko</h2>
+   <ul>
+    <li><b>Alamat:</b> Jl. Teknologi No. 25, Jakarta Selatan 12345</li>
+    <li><b>Telepon / WhatsApp:</b> 0812-3456-7890</li>
+    <li><b>Email:</b> halo@digistore.id</li>
+    <li><b>Jam buka:</b> Senin–Sabtu, 09.00–21.00 WIB</li>
+   </ul>
+   <div class="soc"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">TikTok</a><a href="#">YouTube</a></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fg">
+   <div><h4>DigiStore</h4><p>Toko elektronik online terpercaya. Gadget original, garansi resmi, harga jelas.</p></div>
+   <div><h4>Menu</h4><a href="#beranda">Beranda</a><a href="#katalog">Katalog</a><a href="#tentang">Tentang Kami</a></div>
+   <div><h4>Hubungi kami</h4><a href="#kontak">0812-3456-7890</a><a href="#kontak">halo@digistore.id</a></div>
+  </div>
+  <div class="copy">© 2026 DigiStore. Dikembangkan oleh Digital Creative Solution.</div>
+ </div>
+</footer>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer" aria-label="Keranjang belanja">
+ <div class="dh"><h3>Keranjang belanja</h3><button id="closeCart" aria-label="Tutup">✕</button></div>
+ <div class="items" id="items"></div>
+ <div class="df">
+  <div class="tot"><span>Total (<span id="tq">0</span> barang)</span><span id="tp">Rp0</span></div>
+  <button class="btn" id="checkout">Checkout</button>
+ </div>
+</aside>
+<div class="modal" id="modal"><div class="mb" id="mb"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="java.js"></script>
+</body>
+</html>
